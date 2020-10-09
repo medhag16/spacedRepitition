@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1090749669831",
+    "firebase_url": "https://spacedrep-dd12c.firebaseio.com",
+    "project_id": "spacedrep-dd12c",
+    "storage_bucket": "spacedrep-dd12c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090749669831:android:24d0f4dda49c914ad8b9e2",
+        "android_client_info": {
+          "package_name": "com.example.spaced_rep_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090749669831-36mt0kpchg1hr61glkmhvib5lg3cpicm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spaced_rep_app",
+            "certificate_hash": "8c6a0e07b4a534c7c2b8f7a6b886dcd7390d826a"
+          }
+        },
+        {
+          "client_id": "1090749669831-df2pshjeqispugv0dcr9a0fitnesu3jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Zh3dBvI_kQiUtjnEWCt4XH8Cmv2Bvfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090749669831-df2pshjeqispugv0dcr9a0fitnesu3jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
