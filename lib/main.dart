@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'package:toast/toast.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:spaced_rep_app/ui/Register.dart';
 import 'package:spaced_rep_app/ui/myHome.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MaterialApp(
+      home: Register(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -131,7 +137,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.black12,
             title: Text(
-              "Dahboard",
+              "Dashboard",
               style: TextStyle(fontSize: 25),
             ),
             actions: <Widget>[
@@ -142,6 +148,21 @@ class MyApp extends StatelessWidget {
               Icon(Icons.more_vert),
               SizedBox(
                 width: 10,
+              ),
+              FlatButton(
+                onPressed: () {
+                  signOutGoogle();
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return Register();
+                    },
+                  ));
+                },
+                child: CircleAvatar(
+                  radius: 20,
+                  // minRadius: 10,
+                  backgroundImage: NetworkImage(user.photoUrl),
+                ),
               ),
             ],
           ),
