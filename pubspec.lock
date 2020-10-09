@@ -118,11 +118,23 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_speed_dial:
+    dependency: "direct main"
+    description:
+      name: flutter_speed_dial
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+
+  http:
+    dependency: "direct main"
+    description:
+
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -152,6 +164,7 @@ packages:
   http:
     dependency: transitive
     description:
+
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
@@ -280,6 +293,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.15"
+  toast:
+    dependency: "direct main"
+    description:
+      name: toast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   typed_data:
     dependency: transitive
     description:

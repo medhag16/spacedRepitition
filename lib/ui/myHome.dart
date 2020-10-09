@@ -17,6 +17,7 @@ class _MyHomeState extends State<MyHome> {
               children: <Widget>[
                 const ListTile(
                   leading: Icon(Icons.label_important),
+                  trailing: Icon(Icons.bookmark),
                   title: Text("Linux",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text("Basix linux commands",
