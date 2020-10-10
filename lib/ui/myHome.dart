@@ -163,7 +163,15 @@ class MyApp extends StatelessWidget {
                   return Constants.choices.map((String choice) {
                     return PopupMenuItem<String>(
                       value: choice,
-                      child: Text(choice),
+                      child: FlatButton(
+                          onPressed: () {
+                            signOutGoogle();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(builder: (context) {
+                              return Register();
+                            }), ModalRoute.withName('/'));
+                          },
+                          child: Text(choice)),
                     );
                   }).toList();
                 },
