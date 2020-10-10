@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spaced_rep_app/main.dart';
 
+import 'myHome.dart';
+
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
