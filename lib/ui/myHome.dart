@@ -3,6 +3,20 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:spaced_rep_app/ui/Register.dart';
 
+/*void choiceAction(String choice) {
+  signOutGoogle();
+  /*Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) {
+    return Register();
+  }), ModalRoute.withName('/'));*/
+}*/
+
+class Constants {
+  static const String SignOut = 'Sign out';
+
+  static const List<String> choices = <String>[SignOut];
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,12 +27,11 @@ class MyApp extends StatelessWidget {
               child: ListView(
             children: <Widget>[
               DrawerHeader(
-                margin: EdgeInsets.only(top: 20),
+                //margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.contain,
-                        image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaH7it4ppZCrkP7zNdd8l_bae_rRRYXXM3IA&usqp=CAU'))),
+                        fit: BoxFit.fitHeight,
+                        image: NetworkImage(user.photoUrl))),
                 child: Text(""),
               ),
               Divider(color: Colors.black87, thickness: 3),
@@ -131,27 +144,29 @@ class MyApp extends StatelessWidget {
             ),
             actions: <Widget>[
               Icon(Icons.notifications),
-              SizedBox(
-                width: 5,
-              ),
-              Icon(Icons.more_vert),
-              SizedBox(
-                width: 10,
-              ),
               FlatButton(
                 onPressed: () {
                   signOutGoogle();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return Register();
-                    },
-                  ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) {
+                    return Register();
+                  }), ModalRoute.withName('/'));
                 },
                 child: CircleAvatar(
                   radius: 20,
-                  // minRadius: 10,
                   backgroundImage: NetworkImage(user.photoUrl),
                 ),
+              ),
+              PopupMenuButton<String>(
+                //onSelected: choiceAction,
+                itemBuilder: (BuildContext context) {
+                  return Constants.choices.map((String choice) {
+                    return PopupMenuItem<String>(
+                      value: choice,
+                      child: Text(choice),
+                    );
+                  }).toList();
+                },
               ),
             ],
           ),
@@ -167,11 +182,48 @@ class MyHome extends StatefulWidget {
 
 class _MyHomeState extends State<MyHome> {
   @override
+  // ignore: override_on_non_overriding_member
+  var name = user.displayName;
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         child: Column(
           children: <Widget>[
+            SizedBox(height: 5),
+            Card(
+              elevation: 15,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(300)),
+              child: GestureDetector(
+                onTap: () {
+                  print("clicked ..");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Welcome : $name",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFe9B5B8),
+                        Color(0xFF4481E8),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
             Card(
                 child: Column(
               children: <Widget>[
