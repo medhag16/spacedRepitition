@@ -9,6 +9,7 @@ class Register extends StatefulWidget {
   _RegisterState createState() => _RegisterState();
 }
 
+var user;
 var _auth = FirebaseAuth.instance;
 var googleSignIn = GoogleSignIn();
 Future<String> signInWithGoogle() async {
