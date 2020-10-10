@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:spaced_rep_app/ui/Register.dart';
 
+
 /*void choiceAction(String choice) {
   signOutGoogle();
   /*Navigator.of(context).pushAndRemoveUntil(
@@ -17,6 +18,7 @@ class Constants {
   static const List<String> choices = <String>[SignOut];
 }
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,20 @@ class MyApp extends StatelessWidget {
               child: ListView(
             children: <Widget>[
               DrawerHeader(
+
                 //margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.fitHeight,
                         image: NetworkImage(user.photoUrl))),
+
+                margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaH7it4ppZCrkP7zNdd8l_bae_rRRYXXM3IA&usqp=CAU'))),
+
                 child: Text(""),
               ),
               Divider(color: Colors.black87, thickness: 3),
@@ -168,6 +179,29 @@ class MyApp extends StatelessWidget {
                   }).toList();
                 },
               ),
+              SizedBox(
+                width: 5,
+              ),
+              Icon(Icons.more_vert),
+              SizedBox(
+                width: 10,
+              ),
+              FlatButton(
+                onPressed: () {
+                  signOutGoogle();
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return Register();
+                    },
+                  ));
+                },
+                child: CircleAvatar(
+                  radius: 20,
+                  // minRadius: 10,
+                  backgroundImage: NetworkImage(user.photoUrl),
+                ),
+              ),
+
             ],
           ),
           body: MyHome(),
