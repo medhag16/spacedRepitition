@@ -2,27 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:spaced_rep_app/ui/Register.dart';
+import 'package:motion_tab_bar/MotionTabBarView.dart';
+import 'package:motion_tab_bar/MotionTabController.dart';
+import 'package:motion_tab_bar/TabItem.dart';
+import 'package:motion_tab_bar/motiontabbar.dart';
+import 'package:spaced_rep_app/ui/subject_popup.dart';
 
-/*void choiceAction(String choice) {
-  signOutGoogle();
-  /*Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) {
-    return Register();
-  }), ModalRoute.withName('/'));*/
-}*/
+MotionTabController _tabController;
 
 class Constants {
   static const String SignOut = 'Sign out';
-
   static const List<String> choices = <String>[SignOut];
 }
 
-class MyApp extends StatelessWidget {
+String cardname = "";
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  //AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    //_controller = AnimationController(vsync: this);
+    _tabController = new MotionTabController(initialIndex: 1, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //_controller.dispose();
+    _tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          bottomNavigationBar: MotionTabBar(
+            labels: ["Account", "Home", "Dashboard"],
+            initialSelectedTab: "Home",
+            tabIconColor: Colors.green,
+            tabSelectedColor: Colors.red,
+            onTabItemSelected: (int value) {
+              print(value);
+              setState(() {
+                _tabController.index = value;
+              });
+            },
+            icons: [Icons.account_box, Icons.home, Icons.menu],
+            textStyle: TextStyle(color: Colors.red),
+          ),
           drawer: Drawer(
               child: ListView(
             children: <Widget>[
@@ -32,9 +67,6 @@ class MyApp extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.fitHeight,
                         image: NetworkImage(user.photoUrl))),
-
-                margin: EdgeInsets.only(top: 20),
-
                 child: Text(""),
               ),
               Divider(color: Colors.black87, thickness: 3),
@@ -125,16 +157,16 @@ class MyApp extends StatelessWidget {
               SpeedDialChild(
                   child: Icon(Icons.book),
                   label: 'Add Subject',
-                  onTap: () => print('Subject Added')),
+                  onTap: () => subPop(context)),
               SpeedDialChild(
                   child: Icon(Icons.file_upload),
                   label: 'Upload Card',
-                  onTap: () => print('Card Added')),
+                  onTap: () => print('Card Uploaded')),
               SpeedDialChild(
                   child: Icon(Icons.share),
                   backgroundColor: Colors.blue,
                   label: 'Share Card',
-                  onTap: () => print('Added')),
+                  onTap: () => print('Share')),
             ],
           ),
           appBar: AppBar(
@@ -145,37 +177,30 @@ class MyApp extends StatelessWidget {
             ),
             actions: <Widget>[
               Icon(Icons.notifications),
+              FlatButton(
+                onPressed: () {},
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: NetworkImage(user.photoUrl),
+                ),
+              ),
               PopupMenuButton<String>(
-                //onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
                   return Constants.choices.map((String choice) {
                     return PopupMenuItem<String>(
                       value: choice,
-                      child: Text(choice),
+                      child: FlatButton(
+                          onPressed: () {
+                            signOutGoogle();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(builder: (context) {
+                              return Register();
+                            }), ModalRoute.withName('/'));
+                          },
+                          child: Text(choice)),
                     );
                   }).toList();
                 },
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              FlatButton(
-                onPressed: () {
-                  signOutGoogle();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return Register();
-                    },
-                  ));
-                },
-                child: CircleAvatar(
-                  radius: 20,
-                  // minRadius: 10,
-                  backgroundImage: NetworkImage(user.photoUrl),
-                ),
               ),
             ],
           ),
