@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:spaced_rep_app/ui/Register.dart';
+import 'package:spaced_rep_app/ui/subject_popup.dart';
 
 /*void choiceAction(String choice) {
   signOutGoogle();
@@ -123,7 +124,7 @@ class MyApp extends StatelessWidget {
                   child: Icon(Icons.book),
                   //backgroundColor: Colors.amber,
                   label: 'Add Subject',
-                  onTap: () => print('Subject Added')),
+                  onTap: () => subPop(context)),
               SpeedDialChild(
                   child: Icon(Icons.file_upload),
                   //backgroundColor: Colors.amber,
