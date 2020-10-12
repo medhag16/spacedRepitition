@@ -156,12 +156,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             children: [
               SpeedDialChild(
                   child: Icon(Icons.book),
-                  //backgroundColor: Colors.amber,
                   label: 'Add Subject',
                   onTap: () => subPop(context)),
               SpeedDialChild(
                   child: Icon(Icons.file_upload),
-                  //backgroundColor: Colors.amber,
                   label: 'Upload Card',
                   onTap: () => print('Card Uploaded')),
               SpeedDialChild(
