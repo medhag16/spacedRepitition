@@ -41,9 +41,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: new ThemeData(
-          primarySwatch: Colors.pink,
-        ),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           bottomNavigationBar: MotionTabBar(
