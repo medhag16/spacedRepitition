@@ -11,7 +11,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 6,
+      seconds: 4,
       navigateAfterSeconds: Register(),
       title: Text(
         "SPACED REPETITION",

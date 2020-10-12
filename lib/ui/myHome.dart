@@ -6,6 +6,7 @@ import 'package:motion_tab_bar/MotionTabBarView.dart';
 import 'package:motion_tab_bar/MotionTabController.dart';
 import 'package:motion_tab_bar/TabItem.dart';
 import 'package:motion_tab_bar/motiontabbar.dart';
+import 'package:spaced_rep_app/ui/subject_popup.dart';
 
 MotionTabController _tabController;
 
@@ -157,7 +158,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   child: Icon(Icons.book),
                   //backgroundColor: Colors.amber,
                   label: 'Add Subject',
-                  onTap: _showMyDialog),
+                  onTap: () => subPop(context)),
               SpeedDialChild(
                   child: Icon(Icons.file_upload),
                   //backgroundColor: Colors.amber,
@@ -207,43 +208,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           ),
           body: MyHome(),
         ));
-  }
-
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.blueGrey[100],
-          elevation: 20,
-          title: Text('Add Card'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration(labelText: "Enter Card Name..."),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Save'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: Text('Discard'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 }
 
