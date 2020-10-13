@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
+final fs_instance = FirebaseFirestore.instance;
 final _formKey = GlobalKey<FormState>();
+var folder_name, folder_subheading;
+void doc_save() async {
+  try {
+    fs_instance
+        .collection("folders")
+        .add({'name': folder_name, 'subheading': folder_subheading});
+  } catch (e) {
+    print(e);
+  }
+}
 
 Future subPop(context) {
   return showDialog(
@@ -36,6 +49,9 @@ Future subPop(context) {
                       decoration: InputDecoration(
                         labelText: "Name",
                       ),
+                      onChanged: (value) {
+                        folder_name = value;
+                      },
                     ),
                   ),
                   Padding(
@@ -44,6 +60,9 @@ Future subPop(context) {
                       decoration: InputDecoration(
                         labelText: "Subheading",
                       ),
+                      onChanged: (value) {
+                        folder_subheading = value;
+                      },
                     ),
                   ),
                   Padding(
@@ -53,6 +72,8 @@ Future subPop(context) {
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
+                          doc_save();
+                          Navigator.of(context).pop();
                         }
                       },
                     ),
