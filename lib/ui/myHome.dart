@@ -300,7 +300,11 @@ class _MyHomeState extends State<MyHome> {
                 ),
               );
             },
-            stream: fs_instance.collection("folders").snapshots(),
+            stream: fs_instance
+                .collection("users")
+                .doc(user.email)
+                .collection("fol")
+                .snapshots(),
           )
         ],
       ),

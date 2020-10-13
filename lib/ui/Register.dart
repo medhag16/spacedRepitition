@@ -2,9 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 //import 'package:spaced_rep_app/main.dart';
 
 import 'myHome.dart';
+
+final fs_instance = FirebaseFirestore.instance;
+
+void createUserDB() async {
+  await fs_instance
+      .collection("users")
+      .doc(user.email)
+      .set({'email': user.email});
+  await fs_instance
+      .collection("users")
+      .doc(user.email)
+      .collection("fol")
+      .doc('documents')
+      .set({'email': user.email});
+}
 
 class Register extends StatefulWidget {
   @override
@@ -36,9 +53,9 @@ Future<String> signInWithGoogle() async {
 
     final User currentUser = _auth.currentUser;
     assert(user.uid == currentUser.uid);
+    createUserDB();
 
     print('signInWithGoogle succeeded: $user');
-
     return '$user';
   }
 
