@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -220,69 +221,88 @@ class _MyHomeState extends State<MyHome> {
   var name = user.displayName;
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 5),
-            Card(
-              elevation: 15,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(300)),
-              child: GestureDetector(
-                onTap: () {
-                  print("clicked ..");
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Welcome : $name",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+      child: ListView(
+        children: <Widget>[
+          SizedBox(height: 5),
+          Card(
+            elevation: 15,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(300)),
+            child: GestureDetector(
+              onTap: () {
+                print("clicked ..");
+              },
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Welcome : $name",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                  height: 75,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFe9B5B8),
-                        Color(0xFF4481E8),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                ),
+                height: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xFFe9B5B8),
+                      Color(0xFF4481E8),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 5),
-            Card(
+          ),
+          SizedBox(height: 5),
+          StreamBuilder<QuerySnapshot>(
+            builder: (context, snapshot) {
+              var docs = snapshot.data.docs;
+              print(docs[0]);
+              List<Widget> y = [];
+              for (var i in docs) {
+                var name = i.data()['name'];
+                var sub = i.data()['subheading'];
+
+                var wid = Card(
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.label_important),
+                        trailing: Icon(Icons.bookmark),
+                        title: Text("$name",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Text("$sub",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          FlatButton(
+                            child: const Text('Added 0 minutes ago',
+                                style:
+                                    TextStyle(fontWeight: FontWeight.normal)),
+                            onPressed: () {/* ... */},
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+                y.add(wid);
+              }
+              return Container(
                 child: Column(
-              children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.label_important),
-                  trailing: Icon(Icons.bookmark),
-                  title: Text("Linux",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Text("Basix linux commands",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  children: y,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    FlatButton(
-                      child: const Text('Added 0 minutes ago',
-                          style: TextStyle(fontWeight: FontWeight.normal)),
-                      onPressed: () {/* ... */},
-                    ),
-                  ],
-                )
-              ],
-            )),
-          ],
-        ),
+              );
+            },
+            stream: fs_instance.collection("folders").snapshots(),
+          )
+        ],
       ),
     );
   }
