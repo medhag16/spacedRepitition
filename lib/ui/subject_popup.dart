@@ -7,11 +7,11 @@ final _formKey = GlobalKey<FormState>();
 var folder_name, folder_subheading;
 void doc_save() async {
   try {
-    await fs_instance
-        .collection("users")
-        .doc(user.email)
-        .collection("fol")
-        .add({'name': folder_name, 'subheading': folder_subheading});
+    // await fs_instance
+    //     .collection("users")
+    //     .doc(user.email)
+    //     .collection("fol")
+    folref.add({'name': folder_name, 'subheading': folder_subheading});
   } catch (e) {
     print(e);
   }

@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'myHome.dart';
 
+var folref;
 final fs_instance = FirebaseFirestore.instance;
 
 void createUserDB() async {
@@ -15,12 +16,10 @@ void createUserDB() async {
       .collection("users")
       .doc(user.email)
       .set({'email': user.email});
-  await fs_instance
-      .collection("users")
-      .doc(user.email)
-      .collection("fol")
-      .doc('documents')
-      .set({'email': user.email});
+  folref =
+      await fs_instance.collection("users").doc(user.email).collection("fol");
+  //.doc('documents');
+  // .set({'email': user.email});
 }
 
 class Register extends StatefulWidget {
