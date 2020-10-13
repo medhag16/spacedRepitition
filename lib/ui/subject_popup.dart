@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_core/firebase_core.dart';
+import 'Register.dart';
 
-final fs_instance = FirebaseFirestore.instance;
 final _formKey = GlobalKey<FormState>();
 var folder_name, folder_subheading;
 void doc_save() async {
   try {
-    fs_instance
-        .collection("folders")
-        .add({'name': folder_name, 'subheading': folder_subheading});
+    await fs_instance
+        .collection("users")
+        .doc(user.email)
+        .collection("fol")
+        .doc('folders')
+        .set({'name': folder_name, 'subheading': folder_subheading});
   } catch (e) {
     print(e);
   }
