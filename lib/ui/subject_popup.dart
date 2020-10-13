@@ -11,8 +11,7 @@ void doc_save() async {
         .collection("users")
         .doc(user.email)
         .collection("fol")
-        .doc('folders')
-        .set({'name': folder_name, 'subheading': folder_subheading});
+        .add({'name': folder_name, 'subheading': folder_subheading});
   } catch (e) {
     print(e);
   }
