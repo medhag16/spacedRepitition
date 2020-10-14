@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -11,7 +12,11 @@ void doc_save() async {
     //     .collection("users")
     //     .doc(user.email)
     //     .collection("fol")
-    folref.add({'name': folder_name, 'subheading': folder_subheading});
+    folref.add({
+      'name': folder_name,
+      'subheading': folder_subheading,
+      'timestamp': FieldValue.serverTimestamp()
+    });
   } catch (e) {
     print(e);
   }
