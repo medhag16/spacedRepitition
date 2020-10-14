@@ -261,44 +261,52 @@ class _MyHomeState extends State<MyHome> {
           StreamBuilder<QuerySnapshot>(
             builder: (context, snapshot) {
               var docs = snapshot.data.docs;
-              print(docs[0]);
-              List<Widget> y = [];
-              for (var i in docs) {
-                var name = i.data()['name'];
-                var sub = i.data()['subheading'];
-
-                var wid = Card(
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(Icons.label_important),
-                        trailing: Icon(Icons.bookmark),
-                        title: Text("$name",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        subtitle: Text("$sub",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          FlatButton(
-                            child: const Text('Added 0 minutes ago',
-                                style:
-                                    TextStyle(fontWeight: FontWeight.normal)),
-                            onPressed: () {/* ... */},
-                          ),
-                        ],
-                      )
-                    ],
+              if (docs.length == 0) {
+                return Center(
+                  child: Text(
+                    "No Cards yet",
+                    style: TextStyle(fontSize: 20.0, color: Colors.grey),
                   ),
                 );
-                y.add(wid);
+              } else {
+                print(docs[0]);
+                List<Widget> y = [];
+                for (var i in docs) {
+                  var name = i.data()['name'];
+                  var sub = i.data()['subheading'];
+                  var wid = Card(
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.label_important),
+                          trailing: Icon(Icons.bookmark),
+                          title: Text("$name",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text("$sub",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            FlatButton(
+                              child: const Text('Added 0 minutes ago',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.normal)),
+                              onPressed: () {/* ... */},
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                  y.add(wid);
+                }
+                return Container(
+                  child: Column(
+                    children: y,
+                  ),
+                );
               }
-              return Container(
-                child: Column(
-                  children: y,
-                ),
-              );
             },
             stream: fs_instance
                 .collection("users")
