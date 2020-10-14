@@ -43,170 +43,171 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          bottomNavigationBar: MotionTabBar(
-            labels: ["Account", "Home", "Dashboard"],
-            initialSelectedTab: "Home",
-            tabIconColor: Colors.green,
-            tabSelectedColor: Colors.red,
-            onTabItemSelected: (int value) {
-              print(value);
-              setState(() {
-                _tabController.index = value;
-              });
-            },
-            icons: [Icons.account_box, Icons.home, Icons.menu],
-            textStyle: TextStyle(color: Colors.red),
-          ),
-          drawer: Drawer(
-              child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                //margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(user.photoUrl))),
-                child: Text(""),
-              ),
-              Divider(color: Colors.black87, thickness: 3),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.folder),
-                    Text("    All Cards"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    Text("    Browse Cards"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(color: Colors.black38),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.account_circle),
-                    Text("   My Account"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.help),
-                    Text("   Help"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.settings),
-                    Text("   Settings"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.share),
-                    Text("   Share"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(color: Colors.black38),
-              ListTile(
-                title: Text('0.0.1'),
-                onTap: () {},
-              ),
-            ],
-          )),
-          floatingActionButton: SpeedDial(
-            marginRight: 20,
-            animatedIcon: AnimatedIcons.menu_close,
-            animatedIconTheme: IconThemeData(size: 30.0),
-            closeManually: false,
-            marginBottom: 20,
-            overlayColor: Colors.black,
-            overlayOpacity: 0.7,
-            elevation: 15,
-            children: [
-              SpeedDialChild(
-                  child: Icon(Icons.book),
-                  label: 'Add Subject',
-                  onTap: () => subPop(context)),
-              SpeedDialChild(
-                  child: Icon(Icons.file_upload),
-                  label: 'Upload Card',
-                  onTap: () => print('Card Uploaded')),
-              SpeedDialChild(
-                  child: Icon(Icons.share),
-                  backgroundColor: Colors.blue,
-                  label: 'Share Card',
-                  onTap: () => print('Share')),
-            ],
-          ),
-          appBar: AppBar(
-            backgroundColor: Colors.black12,
-            title: Text(
-              "Dashboard",
-              style: TextStyle(fontSize: 25),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        bottomNavigationBar: MotionTabBar(
+          labels: ["Account", "Home", "Dashboard"],
+          initialSelectedTab: "Home",
+          tabIconColor: Colors.green,
+          tabSelectedColor: Colors.red,
+          onTabItemSelected: (int value) {
+            print(value);
+            setState(() {
+              _tabController.index = value;
+            });
+          },
+          icons: [Icons.account_box, Icons.home, Icons.menu],
+          textStyle: TextStyle(color: Colors.red),
+        ),
+        drawer: Drawer(
+            child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              //margin: EdgeInsets.only(top: 20),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: NetworkImage(user.photoUrl))),
+              child: Text(""),
             ),
-            actions: <Widget>[
-              Icon(Icons.notifications),
-              FlatButton(
-                onPressed: () {},
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(user.photoUrl),
-                ),
+            Divider(color: Colors.black87, thickness: 3),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.folder),
+                  Text("    All Cards"),
+                ],
               ),
-              PopupMenuButton<String>(
-                itemBuilder: (BuildContext context) {
-                  return Constants.choices.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: FlatButton(
-                          onPressed: () {
-                            signOutGoogle();
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(builder: (context) {
-                              return Register();
-                            }), ModalRoute.withName('/'));
-                          },
-                          child: Text(choice)),
-                    );
-                  }).toList();
-                },
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.search),
+                  Text("    Browse Cards"),
+                ],
               ),
-            ],
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            Divider(color: Colors.black38),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.account_circle),
+                  Text("   My Account"),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.help),
+                  Text("   Help"),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.settings),
+                  Text("   Settings"),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(Icons.share),
+                  Text("   Share"),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            Divider(color: Colors.black38),
+            ListTile(
+              title: Text('0.0.1'),
+              onTap: () {},
+            ),
+          ],
+        )),
+        floatingActionButton: SpeedDial(
+          marginRight: 20,
+          animatedIcon: AnimatedIcons.menu_close,
+          animatedIconTheme: IconThemeData(size: 30.0),
+          closeManually: false,
+          marginBottom: 20,
+          overlayColor: Colors.black,
+          overlayOpacity: 0.7,
+          elevation: 15,
+          children: [
+            SpeedDialChild(
+                child: Icon(Icons.book),
+                label: 'Add Subject',
+                onTap: () => subPop(context)),
+            SpeedDialChild(
+                child: Icon(Icons.file_upload),
+                label: 'Upload Card',
+                onTap: () => print('Card Uploaded')),
+            SpeedDialChild(
+                child: Icon(Icons.share),
+                backgroundColor: Colors.blue,
+                label: 'Share Card',
+                onTap: () => print('Share')),
+          ],
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.black12,
+          title: Text(
+            "Dashboard",
+            style: TextStyle(fontSize: 25),
           ),
-          body: MyHome(),
-        ));
+          actions: <Widget>[
+            Icon(Icons.notifications),
+            FlatButton(
+              onPressed: () {},
+              child: CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(user.photoUrl),
+              ),
+            ),
+            PopupMenuButton<String>(
+              itemBuilder: (BuildContext context) {
+                return Constants.choices.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: FlatButton(
+                        onPressed: () {
+                          signOutGoogle();
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (context) {
+                            return Register();
+                          }), ModalRoute.withName('/'));
+                        },
+                        child: Text(choice)),
+                  );
+                }).toList();
+              },
+            ),
+          ],
+        ),
+        body: MyHome(),
+      ),
+    );
   }
 }
 
@@ -274,6 +275,13 @@ class _MyHomeState extends State<MyHome> {
                 for (var i in docs) {
                   var name = i.data()['name'];
                   var sub = i.data()['subheading'];
+                  var time = i.data()['timestamp'];
+                  var t = DateTime.now().millisecondsSinceEpoch -
+                      time.toDate().millisecondsSinceEpoch;
+                  //print(t);
+                  t = t / 60000;
+                  t = t.toInt();
+                  print(t);
                   var wid = Card(
                     child: Column(
                       children: <Widget>[
@@ -289,7 +297,7 @@ class _MyHomeState extends State<MyHome> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             FlatButton(
-                              child: const Text('Added 0 minutes ago',
+                              child: Text('Added $t minutes ago',
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
                               onPressed: () {/* ... */},
@@ -312,6 +320,7 @@ class _MyHomeState extends State<MyHome> {
                 .collection("users")
                 .doc(user.email)
                 .collection("fol")
+                .orderBy("timestamp", descending: true)
                 .snapshots(),
           )
         ],
