@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:spaced_rep_app/ui/myHome.dart';
+import 'package:spaced_rep_app/ui/myHome.bak';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

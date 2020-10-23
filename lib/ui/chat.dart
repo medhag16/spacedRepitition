@@ -9,7 +9,7 @@ class _MyChatState extends State<MyChat> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("dhb"),
+      child: Text("Chat"),
     );
   }
 }

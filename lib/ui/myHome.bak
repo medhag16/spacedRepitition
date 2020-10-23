@@ -8,6 +8,7 @@ import 'package:motion_tab_bar/MotionTabController.dart';
 import 'package:motion_tab_bar/TabItem.dart';
 import 'package:motion_tab_bar/motiontabbar.dart';
 import 'package:spaced_rep_app/ui/subject_popup.dart';
+import 'Register.dart';
 
 MotionTabController _tabController;
 
@@ -28,9 +29,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    super.initState();
     //_controller = AnimationController(vsync: this);
-    _tabController = new MotionTabController(initialIndex: 1, vsync: this);
+    super.initState();
+    _tabController = MotionTabController(initialIndex: 1, vsync: this);
   }
 
   @override
@@ -45,106 +46,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          bottomNavigationBar: MotionTabBar(
-            labels: ["Account", "Home", "Dashboard"],
-            initialSelectedTab: "Home",
-            tabIconColor: Colors.green,
-            tabSelectedColor: Colors.red,
-            onTabItemSelected: (int value) {
-              print(value);
-              setState(() {
-                _tabController.index = value;
-              });
-            },
-            icons: [Icons.account_box, Icons.home, Icons.menu],
-            textStyle: TextStyle(color: Colors.red),
-          ),
-          drawer: Drawer(
-              child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                //margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(user.photoUrl))),
-                child: Text(""),
-              ),
-              Divider(color: Colors.black87, thickness: 3),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.folder),
-                    Text("    All Cards"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    Text("    Browse Cards"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(color: Colors.black38),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.account_circle),
-                    Text("   My Account"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.help),
-                    Text("   Help"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.settings),
-                    Text("   Settings"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Icon(Icons.share),
-                    Text("   Share"),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(color: Colors.black38),
-              ListTile(
-                title: Text('0.0.1'),
-                onTap: () {},
-              ),
-            ],
-          )),
           floatingActionButton: SpeedDial(
             marginRight: 20,
             animatedIcon: AnimatedIcons.menu_close,
@@ -168,41 +69,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   backgroundColor: Colors.blue,
                   label: 'Share Card',
                   onTap: () => print('Share')),
-            ],
-          ),
-          appBar: AppBar(
-            backgroundColor: Colors.black12,
-            title: Text(
-              "Dashboard",
-              style: TextStyle(fontSize: 25),
-            ),
-            actions: <Widget>[
-              Icon(Icons.notifications),
-              FlatButton(
-                onPressed: () {},
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(user.photoUrl),
-                ),
-              ),
-              PopupMenuButton<String>(
-                itemBuilder: (BuildContext context) {
-                  return Constants.choices.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: FlatButton(
-                          onPressed: () {
-                            signOutGoogle();
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(builder: (context) {
-                              return Register();
-                            }), ModalRoute.withName('/'));
-                          },
-                          child: Text(choice)),
-                    );
-                  }).toList();
-                },
-              ),
             ],
           ),
           body: MyHome(),
@@ -235,7 +101,7 @@ class _MyHomeState extends State<MyHome> {
               child: Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "Welcome : $name",
+                  "Welcome :",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

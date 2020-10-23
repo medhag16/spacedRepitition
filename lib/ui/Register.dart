@@ -3,10 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'navigation.dart';
 
 //import 'package:spaced_rep_app/main.dart';
 
-import 'myHome.dart';
+import 'myHome.bak';
 
 var folref;
 final fs_instance = FirebaseFirestore.instance;
@@ -89,7 +90,7 @@ class _RegisterState extends State<Register> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return MyApp();
+                            return MyApp1();
                           },
                         ),
                       );
