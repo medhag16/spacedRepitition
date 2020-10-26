@@ -7,6 +7,7 @@ import 'package:motion_tab_bar/MotionTabBarView.dart';
 import 'package:motion_tab_bar/MotionTabController.dart';
 import 'package:motion_tab_bar/TabItem.dart';
 import 'package:motion_tab_bar/motiontabbar.dart';
+import 'package:spaced_rep_app/ui/messaging.dart';
 import 'package:spaced_rep_app/ui/subject_popup.dart';
 
 MotionTabController _tabController;
@@ -179,7 +180,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           actions: <Widget>[
             Icon(Icons.notifications),
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Mess();
+                }));
+              },
               child: CircleAvatar(
                 radius: 20,
                 backgroundImage: NetworkImage(user.photoUrl),
