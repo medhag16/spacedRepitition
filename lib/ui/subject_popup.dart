@@ -11,7 +11,11 @@ void doc_save() async {
     //     .collection("users")
     //     .doc(user.email)
     //     .collection("fol")
-    folref.add({'name': folder_name, 'subheading': folder_subheading});
+    folref.add({
+      'name': folder_name,
+      'subheading': folder_subheading,
+      'timestamp': FieldValue.serverTimestamp()
+    });
   } catch (e) {
     print(e);
   }

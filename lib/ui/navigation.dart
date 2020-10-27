@@ -7,6 +7,7 @@ import 'package:spaced_rep_app/ui/myHome.bak';
 import 'Register.dart';
 import 'homeScreen.dart';
 import 'chat.dart';
+import 'messaging.dart';
 
 class MyApp1 extends StatelessWidget {
   @override
@@ -136,7 +137,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           actions: <Widget>[
             Icon(Icons.notifications),
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Mess();
+                }));
+              },
               child: CircleAvatar(
                 radius: 20,
                 backgroundImage: NetworkImage(user.photoUrl),

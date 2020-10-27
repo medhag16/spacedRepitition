@@ -144,6 +144,13 @@ class _MyHomeState extends State<MyHome> {
                 for (var i in docs) {
                   var name = i.data()['name'];
                   var sub = i.data()['subheading'];
+                  var time = i.data()['timestamp'];
+                  var t = DateTime.now().millisecondsSinceEpoch -
+                      time.toDate().millisecondsSinceEpoch;
+                  //print(t);
+                  t = t / 60000;
+                  t = t.toInt();
+                  print(t);
                   var wid = Card(
                     child: Column(
                       children: <Widget>[
@@ -159,7 +166,7 @@ class _MyHomeState extends State<MyHome> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             FlatButton(
-                              child: const Text('Added 0 minutes ago',
+                              child: Text('Added $t minutes ago',
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
                               onPressed: () {/* ... */},
@@ -182,6 +189,7 @@ class _MyHomeState extends State<MyHome> {
                 .collection("users")
                 .doc(user.email)
                 .collection("fol")
+                .orderBy("timestamp", descending: true)
                 .snapshots(),
           )
         ],
