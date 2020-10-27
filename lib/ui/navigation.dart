@@ -12,9 +12,9 @@ import 'messaging.dart';
 class MyApp1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+    return Scaffold(
+      //debugShowCheckedModeBanner: false,
+      body: MyHomePage(),
     );
   }
 }
@@ -135,13 +135,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             style: TextStyle(fontSize: 25),
           ),
           actions: <Widget>[
-            Icon(Icons.notifications),
-            FlatButton(
+            IconButton(
+              icon: Icon(Icons.notifications),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return Mess();
                 }));
               },
+            ),
+            FlatButton(
+              onPressed: null,
               child: CircleAvatar(
                 radius: 20,
                 backgroundImage: NetworkImage(user.photoUrl),
