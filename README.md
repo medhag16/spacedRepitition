@@ -1,3 +1,9 @@
+
+https://user-images.githubusercontent.com/51082122/120907971-d286d800-c683-11eb-9968-3d091b361b28.mp4
+
+
+Effective Learning technique with flashcards based on the psychological spacing effect.
+
 # spaced_rep_app
 
 A new Flutter project.
